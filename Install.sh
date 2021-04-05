@@ -148,7 +148,7 @@ chmod -v +x /home/jordan/.local/bin/spark.sh
 git clone https://github.com/jtw023/Random-Scripts.git
 chmod -v +x /home/jordan/Random-Scripts/*
 curl -fLo /home/jordan/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -Vc ':PlugInstall | quit'
+vim -c ':PlugInstall | quit'
 
 echo "################################################################"
 echo "Moving packages"
