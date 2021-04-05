@@ -77,6 +77,7 @@ picom
 playerctl
 pulseaudio-bluetooth
 python3
+python-pip
 qemu
 qtile
 qutebrowser
@@ -101,6 +102,7 @@ xorg-xprop
 xorg-xrandr
 youtube-dl
 zsh
+zsh-syntax-highlighting
 )
 
 count=0

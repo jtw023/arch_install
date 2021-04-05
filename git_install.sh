@@ -2,6 +2,22 @@
 
 if [ $(whoami) = 'root' ]; then
 
+#	echo "################################################################"
+#	echo "Syncing timezones"
+#	echo "################################################################"
+#	timedatectl set-timezone America/Los_Angeles
+#	systemctl enable systemd-timesyncd
+#
+#	echo "################################################################"
+#	echo "Finding mirrors"
+#	echo "################################################################"
+#	reflector --verbose -l 200 -n 10 --sort rate --save /etc/pacman.d/mirrorlist
+#
+#	echo "################################################################"
+#	echo "Updating pacman"
+#	echo "################################################################"
+#	pacman -Syy
+#
 	echo "################################################################"
 	echo "Cloning from git."
 	echo "################################################################"
@@ -24,10 +40,11 @@ if [ $(whoami) = 'root' ]; then
 	echo "cd to /home/jordan/"
 	echo "----------------------------------------------------------------"
 	cd /home/jordan/
+	rm -rfv .config/
 	git clone https://github.com/jtw023/.config.git
 	git clone --depth 1 https://github.com/junegunn/fzf.git /home/jordan/.fzf
 	echo "----------------------------------------------------------------"
-	echo "Install zsh extensions"
+	echo "Installing zsh extensions"
 	echo "----------------------------------------------------------------"
 	/home/jordan/.fzf/install --all
 	mkdir -v /usr/share/zsh/plugins/zsh-autosuggestions
@@ -35,21 +52,21 @@ if [ $(whoami) = 'root' ]; then
 	mkdir -v /home/jordan/.local/bin
 	git clone https://github.com/holman/spark.git /home/jordan/.local/bin/
 	echo "----------------------------------------------------------------"
-	echo "Install spark and other executable scripts"
+	echo "Installing spark and other executable scripts"
 	echo "----------------------------------------------------------------"
 	chmod -v +x /home/jordan/.local/bin/spark
 	git clone https://github.com/jtw023/Random-Scripts.git
 	chmod -v +x /home/jordan/Random-Scripts/*
 	echo "----------------------------------------------------------------"
-	echo "Install vim-plug"
+	echo "Installing vim-plug"
 	echo "----------------------------------------------------------------"
 	curl -fLo /home/jordan/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-	
+
 	echo "################################################################"
-	echo "Moving packages"
+	echo "Moving packages to proper location"
 	echo "################################################################"
-	if [ -d "/usr/share/zsh/themes" ]; then 
+	if [ -d "/usr/share/zsh/themes" ]; then
 		cp -v /home/jordan/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
 	elif [ -d "/usr/share/zsh" ]; then
 		mkdir -v /usr/share/zsh/themes
@@ -58,13 +75,12 @@ if [ $(whoami) = 'root' ]; then
 		mkdir -v /usr/share/zsh
 		mkdir -v /usr/share/zsh/themes
 		cp -v /home/jordan/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
-	else 
+	else
 		mkdir -v /usr/share
 		mkdir -v /usr/share/zsh
 		mkdir -v /usr/share/zsh/themes
 		cp -v /home/jordan/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
 	fi
-	mkdir -v /opt/shell-color-scripts
 	cp -v /home/jordan/.config/Xresources/.Xresources /home/jordan/
 	cp -v /home/jordan/.config/xinit/.xinitrc /home/jordan/
 	cp -v /home/jordan/.config/Xauthority/.Xauthority /home/jordan/
@@ -74,20 +90,14 @@ if [ $(whoami) = 'root' ]; then
 	cp -v /home/jordan/.config/zsh/.zshrc /home/jordan/
 	cp -v /home/jordan/.config/vim/.vimrc /home/jordan/
 
+    echo "################################################################"
+    echo "Installing psutil"
+    echo "################################################################"
+    pip3 install psutil
+
 
 	echo "################################################################"
-	echo "Enabling yay."
-	echo "################################################################"
-	echo "----------------------------------------------------------------"
-	echo "cd to /opt/"
-	echo "----------------------------------------------------------------"
-	cd /opt/
-	chown -Rv jordan:users ./yay
-	cd yay
-	makepkg -si
-
-	echo "################################################################"
-	echo "Finished installing. Please open vim and run ':PlugInstall'."
+	echo "Finished the install process. Please run 'chown -R jordan:wheel /home/jordan/."
 	echo "################################################################"
 else
 	echo "Please switch to the root user first."
