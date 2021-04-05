@@ -135,6 +135,20 @@ echo "cd to /home/jordan/"
 echo "----------------------------------------------------------------"
 cd /home/jordan/
 git clone https://github.com/jtw023/.config.git
+git clone --depth 1 https://github.com/junegunn/fzf.git
+echo "----------------------------------------------------------------"
+echo "Install zsh fuzzy finder"
+echo "----------------------------------------------------------------"
+/home/jordan/.fzf/install --all
+mkdir -v /usr/share/zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/plugins/zsh-autosuggestions/
+mkdir -v /home/jordan/.local/bin
+git clone https://github.com/holman/spark.git /home/jordan/.local/bin/
+chmod -v +x /home/jordan/.local/bin/spark.sh
+git clone https://github.com/jtw023/Random-Scripts.git
+chmod -v +x /home/jordan/Random-Scripts/*
+curl -fLo /home/jordan/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -Vc ':PlugInstall | quit'
 
 echo "################################################################"
 echo "Moving packages"
