@@ -175,6 +175,8 @@ cp -v /home/jordan/.config/Xauthority/.Xauthority /home/jordan/
 cp -vr /home/jordan/.config/colorscripts/ /opt/shell-color-scripts/
 cp -v /home/jordan/.config/vim/.vimrc.root /root/.vimrc
 cp -v /home/jordan/.config/zsh/.zshrc.root /root/.zshrc
+cp -v /home/jordan/.config/zsh/.zshrc /home/jordan/
+cp -v /home/jordan/.config/vim/.vimrc /home/jordan/
 
 
 echo "################################################################"
