@@ -2,22 +2,22 @@
 
 if [ $(whoami) = 'root' ]; then
 
-#	echo "################################################################"
-#	echo "Syncing timezones"
-#	echo "################################################################"
-#	timedatectl set-timezone America/Los_Angeles
-#	systemctl enable systemd-timesyncd
-#
-#	echo "################################################################"
-#	echo "Finding mirrors"
-#	echo "################################################################"
-#	reflector --verbose -l 200 -n 10 --sort rate --save /etc/pacman.d/mirrorlist
-#
-#	echo "################################################################"
-#	echo "Updating pacman"
-#	echo "################################################################"
-#	pacman -Syy
-#
+	echo "################################################################"
+	echo "Syncing timezones"
+	echo "################################################################"
+	timedatectl set-timezone America/Los_Angeles
+	systemctl enable systemd-timesyncd
+
+	echo "################################################################"
+	echo "Finding mirrors"
+	echo "################################################################"
+	reflector --verbose -l 200 -n 10 --sort rate --save /etc/pacman.d/mirrorlist
+
+	echo "################################################################"
+	echo "Updating pacman"
+	echo "################################################################"
+	pacman -Syy
+
 	echo "################################################################"
 	echo "Cloning from git."
 	echo "################################################################"
@@ -40,20 +40,20 @@ if [ $(whoami) = 'root' ]; then
 	echo "cd to /home/jordan/"
 	echo "----------------------------------------------------------------"
 	cd /home/jordan/
-	rm -rfv .config/
-	git clone https://github.com/jtw023/.config.git
-	git clone --depth 1 https://github.com/junegunn/fzf.git /home/jordan/.fzf
 	echo "----------------------------------------------------------------"
 	echo "Installing zsh extensions"
 	echo "----------------------------------------------------------------"
+	rm -rfv .config/
+	git clone https://github.com/jtw023/.config.git
+	git clone --depth 1 https://github.com/junegunn/fzf.git /home/jordan/.fzf
 	/home/jordan/.fzf/install --all
 	mkdir -v /usr/share/zsh/plugins/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/plugins/zsh-autosuggestions/
-	mkdir -v /home/jordan/.local/bin
-	git clone https://github.com/holman/spark.git /home/jordan/.local/bin/
 	echo "----------------------------------------------------------------"
 	echo "Installing spark and other executable scripts"
 	echo "----------------------------------------------------------------"
+	mkdir -v /home/jordan/.local/bin
+	git clone https://github.com/holman/spark.git /home/jordan/.local/bin/
 	chmod -v +x /home/jordan/.local/bin/spark
 	git clone https://github.com/jtw023/Random-Scripts.git
 	chmod -v +x /home/jordan/Random-Scripts/*

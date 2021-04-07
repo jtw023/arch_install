@@ -33,7 +33,6 @@ bluez
 bluez-libs
 bluez-utils
 bridge-utils
-clementine
 dialog
 dosfstools
 dunst
@@ -49,6 +48,7 @@ gvfs-smb
 htop
 imagemagick
 jgmenu
+kitty
 libreoffice-fresh
 libvirt
 lightdm
@@ -65,6 +65,7 @@ netctl
 networkmanager
 nitrogen
 nss-mdns
+nvidia
 nvidia-dkms
 nvidia-lts
 nvidia-settings
@@ -89,6 +90,7 @@ rsync
 rtorrent
 signal-desktop
 simplescreenrecorder
+smplayer
 sxiv
 systemd-manager
 tlp
@@ -98,8 +100,9 @@ wireless_tools
 wpa_supplicant
 xf86-video-intel
 xorg-server
-xorg-xprop
 xorg-xrandr
+xorg-xrdb
+xorg-xprop
 youtube-dl
 zsh
 zsh-syntax-highlighting
