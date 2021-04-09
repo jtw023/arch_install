@@ -90,6 +90,25 @@ if [ $(whoami) = 'root' ]; then
 	cp -v /home/jordan/.config/zsh/.zshrc /home/jordan/
 	cp -v /home/jordan/.config/vim/.vimrc /home/jordan/
 
+
+    echo "################################################################"
+    echo "Qutebrowser Theme"
+    echo "################################################################"
+    git clone https://github.com/dracula/qutebrowser-dracula-theme.git dracula
+    mv -rv dracula/ .config/qutebrowser/
+    echo "import dracula.draw
+
+# Load existing settings made via :set
+config.load_autoconfig()
+
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8
+    }
+})" >> /home/jordan/.config/qutebrowser/config.py
+
+
     echo "################################################################"
     echo "Installing psutil"
     echo "################################################################"

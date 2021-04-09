@@ -22,7 +22,6 @@ echo "Installing Software"
 list=(
 adapta-gtk-theme
 alacritty
-arandr
 archlinux-wallpaper
 avahi
 awesome-terminal-fonts
@@ -59,6 +58,7 @@ lsd
 lxappearance
 lxsession
 lynx
+man-db
 mpv
 mtools
 netctl
@@ -76,8 +76,10 @@ pass
 pcmanfm
 picom
 playerctl
+powerline-fonts
 pulseaudio-bluetooth
 python3
+python-pillow
 python-pip
 qemu
 qtile
@@ -90,7 +92,6 @@ rsync
 rtorrent
 signal-desktop
 simplescreenrecorder
-smplayer
 sxiv
 systemd-manager
 tlp
@@ -98,7 +99,6 @@ ufw
 virt-manager
 wireless_tools
 wpa_supplicant
-xf86-video-intel
 xorg-server
 xorg-xrandr
 xorg-xrdb
