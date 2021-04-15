@@ -81,6 +81,14 @@ if [ $(whoami) = 'root' ]; then
 		mkdir -v /usr/share/zsh/themes
 		cp -v /home/jordan/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
 	fi
+
+    if [ -d "/usr/share/rofi/themes" ]; then
+         cp -v /home/jordan/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
+     else
+         mkdir -pv /usr/share/rofi/themes
+         cp -v /home/jordan/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
+     fi
+
 	cp -v /home/jordan/.config/Xresources/.Xresources /home/jordan/
 	cp -v /home/jordan/.config/xinit/.xinitrc /home/jordan/
 	cp -v /home/jordan/.config/Xauthority/.Xauthority /home/jordan/
