@@ -27,6 +27,7 @@ avahi
 awesome-terminal-fonts
 base-devel
 bash
+bat
 blueberry
 bluez
 bluez-libs
