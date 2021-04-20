@@ -4,20 +4,15 @@
 
 func_install() {
 	if pacman -Qi $1 &> /dev/null; then
-  		echo "###############################################################################"
-  		echo "################## The package "$1" is already installed"
-      	echo "###############################################################################"
+  		echo "################## The package "$1" is already installed ##################"
 	else
-    	echo "###############################################################################"
-    	echo "##################  Installing package "  $1
-    	echo "###############################################################################"
+    	echo "################## Installing package "$1" ##################"
     	pacman -S --noconfirm --needed $1
     fi
 }
 
-###############################################################################
-echo "Installing Software"
-###############################################################################
+
+echo "################## Installing Software ##################"
 
 list=(
 adapta-gtk-theme
@@ -28,10 +23,10 @@ awesome-terminal-fonts
 base-devel
 bash
 bat
-blueberry
-bluez
-bluez-libs
-bluez-utils
+# blueberry
+# bluez
+# bluez-libs
+# bluez-utils
 bridge-utils
 dialog
 dosfstools
@@ -42,7 +37,6 @@ efibootmgr
 ffmpeg
 flameshot
 gedit
-gksu
 grub
 gvfs-smb
 htop
@@ -78,7 +72,7 @@ pcmanfm
 picom
 playerctl
 powerline-fonts
-pulseaudio-bluetooth
+# pulseaudio-bluetooth
 python3
 python-pillow
 python-pip
@@ -117,6 +111,15 @@ for name in "${list[@]}" ; do
 	func_install $name
 done
 
+echo "################## Editing /etc/lightdm/lightdm.conf ##################"
+sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+
+echo "################## Enabling systemctl ##################"
+systemctl enable sshd
+systemctl enable NetworkManager
+systemctl enable lightdm
+# systemctl enable bluetooth
+
 echo "################################################################"
-echo "Finished installing. Please modify /etc/lightdm/lightdm.conf and set 'greeter-session' in the [Seat:*] group. Then run 'systemctl enable sshd; systemctl enable NetworkManager; systemctl enable lightdm; systemctl enable bluetooth"
+echo "Finished. Please make sure /etc/lightdm/lightdm.conf was edited correctly then reboot."
 echo "################################################################"
