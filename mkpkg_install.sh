@@ -64,6 +64,10 @@ echo "################### Installing LunarVim ###################"
 
 bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
 
+echo "################### Removing Vim ###################"
+
+doas pacman -Rns vim
+
 echo "################################################################"
 echo "Finished. Be sure to rsync files from SSD and make sure your version of lunarvim is installed."
 echo "################################################################"

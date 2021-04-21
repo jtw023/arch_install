@@ -28,6 +28,7 @@ bat
 # bluez-libs
 # bluez-utils
 bridge-utils
+ctags
 dialog
 dosfstools
 dunst
@@ -91,6 +92,7 @@ sxiv
 systemd-manager
 tlp
 ufw
+unzip
 virt-manager
 wireless_tools
 wpa_supplicant
