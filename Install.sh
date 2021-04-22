@@ -17,6 +17,7 @@ echo "################## Installing Software ##################"
 list=(
 adapta-gtk-theme
 alacritty
+alsa-lib
 archlinux-wallpaper
 avahi
 awesome-terminal-fonts
@@ -94,6 +95,7 @@ tlp
 ufw
 unzip
 virt-manager
+wget
 wireless_tools
 wpa_supplicant
 xorg-server

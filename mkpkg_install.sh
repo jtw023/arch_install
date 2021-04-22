@@ -7,67 +7,73 @@ func_install() {
 		yay -S --noremovemake $1
 }
 
-echo "################### Enabling yay ###################"
-echo "----------------------------------------------------------------"
-echo "cd to /opt/"
-echo "----------------------------------------------------------------"
+if [ $(whoami) = 'jordan' ]; then
 
-cd /opt/
+    echo "################### Enabling yay ###################"
+    echo "----------------------------------------------------------------"
+    echo "cd to /opt/"
+    echo "----------------------------------------------------------------"
 
-echo "----------------------------------------------------------------"
-echo "Changing ownership"
-echo "----------------------------------------------------------------"
+    cd /opt/
 
-chown -Rv jordan:users ./yay
+    echo "----------------------------------------------------------------"
+    echo "Changing ownership"
+    echo "----------------------------------------------------------------"
 
-echo "----------------------------------------------------------------"
-echo "cd to /opt/yay/"
-echo "----------------------------------------------------------------"
+    chown -Rv jordan:users ./yay
 
-cd yay
+    echo "----------------------------------------------------------------"
+    echo "cd to /opt/yay/"
+    echo "----------------------------------------------------------------"
 
-echo "----------------------------------------------------------------"
-echo "Makepkg"
-echo "----------------------------------------------------------------"
+    cd yay
 
-makepkg -si
+    echo "----------------------------------------------------------------"
+    echo "Makepkg"
+    echo "----------------------------------------------------------------"
 
-echo "----------------------------------------------------------------"
-echo "cd to home"
-echo "----------------------------------------------------------------"
+    makepkg -si
 
-cd /home/jordan/
+    echo "----------------------------------------------------------------"
+    echo "cd to home"
+    echo "----------------------------------------------------------------"
 
-echo "################### Installing yay packages ###################"
+    cd /home/jordan/
 
-list=(
-# brave
-devour
-# librewolf
-neovim-git
-# pulseaudio-ctl
-slack-desktop
-super-productivity
-tutanota-desktop
-timeshift
-)
+    echo "################### Installing yay packages ###################"
 
-count=0
+    list=(
+    brave
+    devour
+    # librewolf
+    neovim-git
+    # pulseaudio-ctl
+    slack-desktop
+    super-productivity
+    tutanota-desktop
+    timeshift
+    )
 
-for name in "${list[@]}"; do
-	count=$[count+1]
-	echo "Installing package number "$count " " $name;
-	func_install $name
-done
+    count=0
 
-echo "################### Installing LunarVim ###################"
+    for name in "${list[@]}"; do
+        count=$[count+1]
+        echo "Installing package number "$count " " $name;
+        func_install $name
+    done
 
-bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
+    echo "################### Installing LunarVim ###################"
 
-echo "################### Removing Vim ###################"
+    bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
 
-doas pacman -Rns vim
+    echo "################### Removing Vim ###################"
 
-echo "################################################################"
-echo "Finished. Be sure to rsync files from SSD and make sure your version of lunarvim is installed."
-echo "################################################################"
+    doas pacman -Rns vim
+
+    echo "################################################################"
+    echo "Finished. Be sure to rsync files from SSD and make sure your version of lunarvim is installed."
+    echo "################################################################"
+else
+    echo "This script cannot be run with as the root user."
+    
+fi
