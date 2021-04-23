@@ -78,6 +78,7 @@ powerline-fonts
 python3
 python-pillow
 python-pip
+python-pynvim
 qemu
 qtile
 qutebrowser
