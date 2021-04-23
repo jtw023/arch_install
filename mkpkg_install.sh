@@ -47,7 +47,7 @@ if [ $(whoami) = 'jordan' ]; then
     devour
     # librewolf
     neovim-git
-    # pulseaudio-ctl
+    pulseaudio-ctl
     slack-desktop
     super-productivity
     tutanota-desktop

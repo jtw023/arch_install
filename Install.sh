@@ -70,10 +70,12 @@ nvidia-utils
 openssh
 os-prober
 pass
+pavucontrol
 pcmanfm
 picom
-playerctl
 powerline-fonts
+pulseaudio
+pulseaudio-alsa
 # pulseaudio-bluetooth
 python3
 python-pillow
