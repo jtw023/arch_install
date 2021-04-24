@@ -43,9 +43,10 @@ if [ $(whoami) = 'jordan' ]; then
     echo "################### Installing yay packages ###################"
 
     list=(
-    brave
+    # brave
     devour
-    # librewolf
+    librewolf-bin
+    lua-format
     neovim-git
     pulseaudio-ctl
     slack-desktop

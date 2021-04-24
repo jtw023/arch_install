@@ -54,6 +54,7 @@ lolcat
 lsd
 lxappearance
 lxsession
+lua
 lynx
 man-db
 mpv
@@ -84,6 +85,7 @@ python-pynvim
 qemu
 qtile
 qutebrowser
+r
 ranger
 redshift
 reflector

@@ -93,13 +93,16 @@ if [ $(whoami) = 'root' ]; then
 
     pip3 install psutil
 
+    echo "################## Installing yapf ##################"
+
+    pip3 install yapf
 
     echo "################## Changing ownership ##################"
 
     chown -R jordan:wheel /home/jordan/
 
-
 	echo "################## Finished. Please check home folder permissions then run mkpkg_install.sh. ##################"
+
 else
 	echo "Please switch to the root user first."
 fi
