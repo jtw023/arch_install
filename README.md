@@ -2,8 +2,10 @@
 
 <hr />
 
-## UNTESTED ON MY LOCAL MACHINE
-# I have not reinstalled linux since making these scripts.
+# UNTESTED ON MY LOCAL MACHINE
+## I have not reinstalled linux since making these scripts.
+
+<hr />
 
 This is a collection of arch linux install scripts that i've built up over time. They include my custom config directory and have some parts of the script commented out. For example, bluetooth. I am not using bluetooth at the moment so i've got no need to install that functionality. If you would like that functionality, simply uncomment the relevent parts of the script before running. 
 
