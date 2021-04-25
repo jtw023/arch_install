@@ -5,6 +5,13 @@ if [[ $UID -ne 0 ]]; then
 	echo "Please switch to the root user first."
 
 else
+	echo "################## Editing doas config file ##################"
+
+	su -c "touch /etc/doas.conf"
+	su -c "echo 'permit $USER as root' >> /etc/doas.conf"
+	cat /etc/doas.conf
+	echo "If this is not 'permit $USER as root' please come back to modify /etc/doas.conf"
+	sleep 5
 
     echo "################## Syncing Timezones ##################"
 
