@@ -1,14 +1,18 @@
 #!/bin/bash
 #set -e
 
-
 func_install() {
+
 	if pacman -Qi $1 &> /dev/null; then
+
   		echo "################## The package "$1" is already installed ##################"
+
 	else
-    	echo "################## Installing package "$1" ##################"
+
     	pacman -S --noconfirm --needed $1
+
     fi
+
 }
 
 
@@ -70,6 +74,7 @@ nvidia-settings
 nvidia-utils
 openssh
 os-prober
+pacman-contrib
 pass
 pavucontrol
 pcmanfm
@@ -130,5 +135,5 @@ systemctl enable lightdm
 # systemctl enable bluetooth
 
 echo "################################################################"
-echo "Finished. Please make sure /etc/lightdm/lightdm.conf was edited correctly then reboot."
+echo "Finished. Please make sure /etc/lightdm/lightdm.conf was edited correctly then reboot and run the system_setup script."
 echo "################################################################"
