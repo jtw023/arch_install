@@ -31,7 +31,7 @@ if [[ $UID -ne 0 ]]; then
     echo "| cd to /opt/yay/ |"
     echo " ----------------- "
 
-    cd yay
+    cd /opt/yay/
 
     echo " --------- "
     echo "| Makepkg |"
@@ -88,11 +88,24 @@ if [[ $UID -ne 0 ]]; then
     git clone https://github.com/norcalli/nvim-colorizer.lua.git
     doas mv -rv nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
 
+    echo "################### Removing .config directory and installing a custom one ###################"
+    rm -rf $HOME/.config/
+    git clone https://github.com/jtw023/.config.git
+
     echo "################### Removing Regular Vim ###################"
 
-    doas pacman -Rns vim
+    doas pacman -Rnsv vim
 
-    echo "################################################################"
+    echo "################### Removing Sudo ###################"
+
+    doas pacman -Rnsv sudo
+
+    echo "################### Changing primary shell from bash to zsh ###################"
+
+    chsh -s /bin/zsh
+    doas chsh -s /bin/zsh
+
+        echo "################################################################"
     echo "Finished. Be sure to sync files from SSD and make sure the correct version of lunarvim is installed."
     echo "################################################################"
 

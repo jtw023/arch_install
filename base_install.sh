@@ -35,6 +35,7 @@ bat
 bridge-utils
 ctags
 dialog
+doas
 dosfstools
 dunst
 ebtables
