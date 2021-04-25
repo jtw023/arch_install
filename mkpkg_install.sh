@@ -38,7 +38,7 @@ if [ $(whoami) = 'jordan' ]; then
     echo "cd to home"
     echo "----------------------------------------------------------------"
 
-    cd /home/jordan/
+    cd $HOME/
 
     echo "################### Installing yay packages ###################"
 
@@ -50,7 +50,7 @@ if [ $(whoami) = 'jordan' ]; then
     neovim-git
     pulseaudio-ctl
     slack-desktop
-    super-productivity
+    superproductivity
     tutanota-desktop
     timeshift
     )
@@ -72,7 +72,7 @@ if [ $(whoami) = 'jordan' ]; then
     doas pacman -Rns vim
 
     echo "################################################################"
-    echo "Finished. Be sure to rsync files from SSD and make sure your version of lunarvim is installed."
+    echo "Finished. Be sure to sync files from SSD and make sure your version of lunarvim is installed."
     echo "################################################################"
 else
     echo "This script cannot be run with as the root user."
