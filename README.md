@@ -1,7 +1,9 @@
 # UNTESTED ON MY LOCAL MACHINE
 ## I have not reinstalled linux since finalizing these scripts.
 
-This is a collection of arch linux install scripts that include my custom config directory. It also makes use of the linux-lts kernel. If you would like bluetooth functionality, simply uncomment the relevant parts of the script before running. For this to work, the user must be running an nvidia graphics card. If not, Please comment out the nvidia packages and install with your appropriate graphics packages. I also have an intel processor. If you have an amd processor, please comment out the 'intel-ucode' package and add 'amd-ucode' from the base_install script. These scripts are also assuming a btrfs file system. If that is not what you are looking for you can comment the btrfs-progs package and modify it as you please. As always, please verify what this is actually doing to your system before running. 
+This is collection of install scripts use the linux-lts kernel. If you would like bluetooth functionality, simply uncomment the relevant parts of the script before running.
+
+For this to work, the user must be running an nvidia graphics card. If not, Please comment out the nvidia packages and install with your appropriate graphics packages. I also have an intel processor. If you have an amd processor, please comment out the 'intel-ucode' package and add 'amd-ucode' to the base_install script. These scripts are also assuming a btrfs file system. If that is not what you are looking for you can comment the btrfs-progs package and modify it as you please. As always, please verify what this is actually doing to your system before running since it is heavily customized to handle as much of my arch install as possible. 
 
 # Installtion:
 ~~~
