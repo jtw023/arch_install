@@ -122,6 +122,12 @@ if [[ $UID -ne 0 ]]; then
     chsh -s /bin/zsh
     doas chsh -s /bin/zsh root
 
+    echo "################### Setting neovim to git difftool ###################"
+
+    git config --global difftool.prompt true
+    git config --global diff.tool nvimdiff
+    git config --global difftool.nvimdiff.cmd "nvim -d \"$LOCAL\" \"$REMOTE\""
+
     echo "Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing $HOME/.config/qtile/scripts/autostart.sh"
 
 else
