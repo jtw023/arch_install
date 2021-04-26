@@ -14,6 +14,23 @@ func_install() {
 
 if [[ $UID -ne 0 ]]; then
 
+	echo "################## Editing doas config file ##################"
+
+	su -c "touch /etc/doas.conf"
+	su -c "echo 'permit $USER as root' >> /etc/doas.conf"
+	cat /etc/doas.conf
+	echo "If the above is not 'permit $USER as root' please come back to modify /etc/doas.conf"
+	echo "Sleeping for 10 seconds while you read this."
+	sleep 10
+
+	echo "################## Installing psutil ##################"
+
+    pip3 install psutil
+
+    echo "################## Installing yapf ##################"
+
+    pip3 install yapf
+
     echo "################### Enabling yay ###################"
     echo " ------------- "
     echo "| cd to /opt/ |"
@@ -25,7 +42,7 @@ if [[ $UID -ne 0 ]]; then
     echo "| Changing ownership of yay directory |"
     echo " ------------------------------------- "
 
-    chown -Rv $USER:users ./yay
+	doas chown -Rv $USER:users ./yay
 
     echo " ----------------- "
     echo "| cd to /opt/yay/ |"
@@ -103,11 +120,9 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Changing primary shell from bash to zsh ###################"
 
     chsh -s /bin/zsh
-    doas chsh -s /bin/zsh
+    doas chsh -s /bin/zsh root
 
-        echo "################################################################"
-    echo "Finished. Be sure to sync files from SSD and make sure the correct version of lunarvim is installed."
-    echo "################################################################"
+    echo "Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing $HOME/.config/qtile/scripts/autostart.sh"
 
 else
 
