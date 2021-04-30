@@ -65,7 +65,7 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Installing yay packages ###################"
 
     list=(
-    # brave
+    # brave-bin
     devour
     librewolf-bin
     lua-format

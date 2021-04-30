@@ -131,6 +131,8 @@ xorg-xrandr
 xorg-xrdb
 xorg-xprop
 youtube-dl
+zathura
+zathura-pdf-mupdf
 zsh
 zsh-syntax-highlighting
 )
