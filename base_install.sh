@@ -57,6 +57,7 @@ dunst
 ebtables
 ecryptfs-utils
 efibootmgr
+efm-langserver
 ffmpeg
 flameshot
 gedit
