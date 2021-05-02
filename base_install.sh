@@ -175,6 +175,13 @@ echo "The above line should be 'greeter-session=lightdm-webkit2-greeter'. If it 
 echo "Sleeping for 10 seconds while you read this."
 sleep 10
 
+echo "################## Editing /etc/pacman.conf ##################"
+sed -i 's/#Color/Color/g' /etc/pacman.conf
+cat /etc/pacman.conf | grep Color
+echo "The above line should be 'Color'. If it is not, please come back to edit /etc/pacman.conf"
+echo "Sleeping for 10 seconds while you read this."
+sleep 10
+
 echo "################## Enabling systemctl ##################"
 systemctl enable sshd
 systemctl enable NetworkManager
