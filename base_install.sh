@@ -128,6 +128,7 @@ wget
 wireless_tools
 wpa_supplicant
 xorg-server
+xorg-xkill
 xorg-xrandr
 xorg-xrdb
 xorg-xprop
