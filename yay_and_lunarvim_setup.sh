@@ -17,9 +17,9 @@ if [[ $UID -ne 0 ]]; then
 	echo "################## Editing doas config file ##################"
 
 	su -c "touch /etc/doas.conf"
-	su -c "echo 'permit $USER as root' >> /etc/doas.conf"
+	su -c "echo 'permit '$USER' as root' > /etc/doas.conf"
 	cat /etc/doas.conf
-	echo "If the above is not 'permit $USER as root' please come back to modify /etc/doas.conf"
+	echo "If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf"
 	echo "Sleeping for 10 seconds while you read this."
 	sleep 10
 
@@ -128,7 +128,15 @@ if [[ $UID -ne 0 ]]; then
     git config --global diff.tool nvimdiff
     git config --global difftool.nvimdiff.cmd "nvim -d \"$LOCAL\" \"$REMOTE\""
 
-    echo "Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing $HOME/.config/qtile/scripts/autostart.sh\nOpen vim and run ':PackerCompile', ':PackerInstall', ':LspInstall efm', and ':LspInstall python'"
+    echo "################## re-editing doas config file ##################"
+
+	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman args -Syu\npermit persist '$USER' cmd pacman args -Rns' > /etc/doas.conf"
+	cat /etc/doas.conf
+	echo "If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman args -Syu', and 'permit persist <yourusername> cmd pacman args -Rns' then please come back to modify /etc/doas.conf"
+	echo "Sleeping for 10 seconds while you read this."
+	sleep 10
+
+    echo "Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerCompile', ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman -Syu', and 'pacman -Rns' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'"
 
 else
 
