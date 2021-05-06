@@ -73,7 +73,6 @@ if [[ $UID -ne 0 ]]; then
     pkgfile-git
     pulseaudio-ctl
     slack-desktop
-    superproductivity
     tutanota-desktop
     timeshift
     )
@@ -92,6 +91,7 @@ if [[ $UID -ne 0 ]]; then
 
     echo "################### Installing LunarVim ###################"
 
+    rm -rf $HOME/.config/
     bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
     
     echo "################### Installing LunarVim Plugins ###################"
@@ -106,6 +106,7 @@ if [[ $UID -ne 0 ]]; then
     doas mv -rv nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
 
     echo "################### Removing .config directory and installing a custom one ###################"
+
     rm -rf $HOME/.config/
     git clone https://github.com/jtw023/.config.git
 
