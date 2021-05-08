@@ -80,6 +80,7 @@ lxsession
 lua
 lynx
 man-db
+mlocate
 mpv
 mtools
 netctl
