@@ -1,5 +1,4 @@
-#!/bin/bash
-#set -e
+#!/usr/bin/env bash
 
 func_install() {
 
@@ -9,20 +8,28 @@ func_install() {
 
 	else
 
-    	pacman -S --noconfirm --needed $1
+    	pacman -S --noconfirm $1
 
     fi
 
 }
 
+echo "################## Running pacstrap command ##################"
+
+pacstrap /mnt base linux linux-firmware git vim intel-ucode btrfs-progs
+
 echo "################## Generating FStab file ##################"
 
 genfstab -U /mnt >> /mnt/etc/fstab
+
+echo "################## Preparing chroot environment ##################"
 
 arch-chroot /mnt
 
 echo "################## Setting the english locale ##################"
 
+ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
+hwclock --systohc
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 cat /etc/locale.gen | grep en_US
 echo "The second line: 'en_US.UTF-8 UTF-8' should be uncommented. If not, please fix /etc/locale.gen."
@@ -30,6 +37,14 @@ echo "Sleeping for 10 seconds while you read this."
 sleep 10
 
 locale-gen
+
+if [[ -f "/etc/locale.conf" ]]; then
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+else
+    touch /etc/locale.conf
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+fi
+
 
 echo "################## Installing Software ##################"
 
@@ -48,10 +63,9 @@ bat
 # bluez-libs
 # bluez-utils
 bridge-utils
-btrfs-progs
 ctags
 dialog
-doas
+opendoas
 dosfstools
 dunst
 ebtables
@@ -60,19 +74,18 @@ efibootmgr
 efm-langserver
 ffmpeg
 flameshot
-gedit
 grub
+grub-btrfs
 gvfs-smb
 htop
 imagemagick
-intel-ucode
-jgmenu
-kitty
+# jgmenu
 libreoffice-fresh
 libvirt
 lightdm
 lightdm-webkit2-greeter
-linux-lts-headers
+# linux-lts-headers
+linux-headers
 lolcat
 lsd
 lxappearance
@@ -116,9 +129,9 @@ redshift
 reflector
 rofi
 rsync
-rtorrent
+# rtorrent
 signal-desktop
-simplescreenrecorder
+# simplescreenrecorder
 sxiv
 systemd-manager
 tlp
@@ -133,7 +146,7 @@ xorg-xkill
 xorg-xrandr
 xorg-xrdb
 xorg-xprop
-youtube-dl
+# youtube-dl
 zathura
 zathura-pdf-mupdf
 zsh
@@ -168,8 +181,8 @@ fi
 
 cat /etc/hosts
 echo "The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts"
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
 sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
@@ -189,6 +202,46 @@ echo "################## Enabling systemctl ##################"
 systemctl enable sshd
 systemctl enable NetworkManager
 systemctl enable lightdm
+systemctl enable tlp
 # systemctl enable bluetooth
-	
-echo "Finished. Please set your root password using the command 'passwd', then create a user for yourself using 'useradd -m -g users -g wheel *yourusername*' and be sure to set a password for that new user using 'passwd *yourusername*'.\n\nOnce done, add 'btrfs nvidia' between the parentheses on the MODULES line in /etc/mkinitcpio.conf and then run the command 'mkinitcpio -p linux-lts'.\n\nFinally, reboot and then run the system_setup script."
+
+echo "################## Editing mkinitcpio.conf ##################"
+
+sed -i 's/MODULES=.*/MODULES=(btrfs nvidia)/g' /etc/mkinitcpio.conf
+cat /etc/mkinitcpio.conf | grep MODULES
+echo "The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf"
+echo "Sleeping for 10 seconds while you read this."
+sleep 10
+
+mkinitcpio -p linux
+
+echo "################## Setting users and passwords ##################"
+
+echo "Create a password for the root user."
+passwd
+
+echo "Enter a username for the normal user."
+read user
+useradd -m -g users wheel $user
+
+echo "Add a password for $user."
+passwd $user
+
+echo "################## Installing grub ##################"
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+echo "################## Copying grub locale ##################"
+
+cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+
+echo "################## Making grub ##################"
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "################## Exiting chroot environment and unmounting drives ##################"
+
+exit
+umount -R /mnt
+
+echo "Finished. Please reboot and then run the system_setup script."
