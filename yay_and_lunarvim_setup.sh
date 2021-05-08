@@ -131,9 +131,9 @@ if [[ $UID -ne 0 ]]; then
 
     echo "################## re-editing doas config file ##################"
 
-	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman args -Syu\npermit persist '$USER' cmd pacman args -Rns' > /etc/doas.conf"
+	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman' > /etc/doas.conf"
 	cat /etc/doas.conf
-	echo "If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman args -Syu', and 'permit persist <yourusername> cmd pacman args -Rns' then please come back to modify /etc/doas.conf"
+	echo "If the above two lines are not 'permit <yourusername> cmd nvim' and 'permit persist <yourusername> cmd pacmans' then please come back to modify /etc/doas.conf"
 	echo "Sleeping for 10 seconds while you read this."
 	sleep 10
 
