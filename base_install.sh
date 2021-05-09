@@ -222,7 +222,7 @@ passwd
 
 echo "Enter a username for the normal user."
 read user
-useradd -m -g users wheel $user
+useradd -m -g users -G wheel $user
 
 echo "Add a password for $user."
 passwd $user
