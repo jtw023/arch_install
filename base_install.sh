@@ -66,10 +66,12 @@ bridge-utils
 ctags
 dialog
 opendoas
+dnsmasq
 dosfstools
 dunst
 ebtables
 ecryptfs-utils
+edk2-ovmf
 efibootmgr
 efm-langserver
 ffmpeg
@@ -105,6 +107,7 @@ nvidia-dkms
 nvidia-lts
 nvidia-settings
 nvidia-utils
+openbsd-netcat
 openssh
 os-prober
 pacman-contrib
@@ -137,6 +140,7 @@ systemd-manager
 tlp
 ufw
 unzip
+vde2
 virt-manager
 wget
 wireless_tools
@@ -184,6 +188,17 @@ echo "The above file should contain the following:\n\n# Static table lookup for 
 echo "Sleeping for 20 seconds while you read this."
 sleep 20
 
+echo "################## Editing /etc/libvirt/libvirtd.conf ##################"
+sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/g' /etc/libvirt/libvirtd.conf
+sed -i 's/#unix_sock_rw_perms = "0770"/unix_sock_rw_perms = "0770"/g' /etc/libvirt/libvirtd.conf
+cat /etc/libvirt/libvirtd.conf | grep unix_sock_group
+echo "The above line should be: unix_sock_group = 'libvirt'"
+cat /etc/libvirt/libvirtd.conf | grep unix_sock_rw_perms
+echo "The above line should be: unix_sock_rw_perms = '0770'"
+echo "If either of those are wrong, please come back to edit /etc/libvirt/libvirtd.conf"
+echo "Sleeping for 10 seconds while you read this."
+sleep 10
+
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
 sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
 cat /etc/lightdm/lightdm.conf | grep greeter-session=
@@ -203,6 +218,7 @@ systemctl enable sshd
 systemctl enable NetworkManager
 systemctl enable lightdm
 systemctl enable tlp
+systemctl enable libvirtd
 # systemctl enable bluetooth
 
 echo "################## Editing mkinitcpio.conf ##################"
@@ -222,7 +238,7 @@ passwd
 
 echo "Enter a username for the normal user."
 read user
-useradd -m -g users -G wheel $user
+useradd -m -g users -G wheel,libvirt $user
 
 echo "Add a password for $user."
 passwd $user
