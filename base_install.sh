@@ -79,7 +79,7 @@ grub-btrfs
 gvfs-smb
 htop
 imagemagick
-# jgmenu
+jgmenu
 libreoffice-fresh
 libvirt
 lightdm
