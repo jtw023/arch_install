@@ -40,7 +40,7 @@ else
     echo " ------------- "
 
     cd /opt/
-    git clone https://aur.archlinux.org/yay.git
+    git clone https://aur.archlinux.org/paru.git
 
     echo " -------------------------------- "
     echo "| cd to the users home directory |"

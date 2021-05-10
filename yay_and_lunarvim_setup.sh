@@ -42,13 +42,13 @@ if [[ $UID -ne 0 ]]; then
     echo "| Changing ownership of yay directory |"
     echo " ------------------------------------- "
 
-	doas chown -Rv $USER:users ./yay
+	doas chown -Rv $USER:users ./paru
 
     echo " ----------------- "
     echo "| cd to /opt/yay/ |"
     echo " ----------------- "
 
-    cd /opt/yay/
+    cd /opt/paru/
 
     echo " --------- "
     echo "| Makepkg |"
