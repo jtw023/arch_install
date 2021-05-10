@@ -52,7 +52,7 @@ list=(
 adapta-gtk-theme
 alacritty
 alsa-lib
-archlinux-wallpaper
+# archlinux-wallpaper
 avahi
 awesome-terminal-fonts
 base-devel
