@@ -70,7 +70,7 @@ grub-btrfs
 gvfs-smb
 htop
 imagemagick
-intel-ucode
+# intel-ucode
 jgmenu
 libreoffice-fresh
 libvirt
@@ -131,7 +131,7 @@ transmission-cli
 ufw
 unzip
 vde2
-vim
+# vim
 virt-manager
 wget
 wireless_tools
