@@ -134,12 +134,12 @@ redshift
 reflector
 rofi
 rsync
-rtorrent
 signal-desktop
 # simplescreenrecorder
 sxiv
 systemd-manager
 tlp
+transmission-cli
 ufw
 unzip
 vde2
