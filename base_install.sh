@@ -220,6 +220,7 @@ systemctl enable lightdm
 systemctl enable tlp
 systemctl enable libvirtd
 # systemctl enable bluetooth
+virsh net-autostart default
 
 echo "################## Editing mkinitcpio.conf ##################"
 
