@@ -14,18 +14,6 @@ func_install() {
 
 }
 
-echo "################## Running pacstrap command ##################"
-
-pacstrap /mnt base linux linux-firmware git
-
-echo "################## Generating FStab file ##################"
-
-genfstab -U /mnt >> /mnt/etc/fstab
-
-echo "################## Preparing chroot environment ##################"
-
-arch-chroot /mnt
-
 echo "################## Setting the english locale ##################"
 
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
@@ -33,8 +21,8 @@ hwclock --systohc
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 cat /etc/locale.gen | grep en_US
 echo "The second line: 'en_US.UTF-8 UTF-8' should be uncommented. If not, please fix /etc/locale.gen."
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 locale-gen
 
@@ -188,8 +176,8 @@ fi
 
 cat /etc/hosts
 echo "The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts"
-echo "Sleeping for 20 seconds while you read this."
-sleep 20
+echo "Sleeping for 30 seconds while you read this."
+sleep 30
 
 echo "################## Editing /etc/libvirt/libvirtd.conf ##################"
 sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/g' /etc/libvirt/libvirtd.conf
@@ -199,22 +187,22 @@ echo "The above line should be: unix_sock_group = 'libvirt'"
 cat /etc/libvirt/libvirtd.conf | grep unix_sock_rw_perms
 echo "The above line should be: unix_sock_rw_perms = '0770'"
 echo "If either of those are wrong, please come back to edit /etc/libvirt/libvirtd.conf"
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
 sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
 cat /etc/lightdm/lightdm.conf | grep greeter-session=
 echo "The above line should be 'greeter-session=lightdm-webkit2-greeter'. If it is not, please come back to edit /etc/lightdm/lightdm.conf"
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 echo "################## Editing /etc/pacman.conf ##################"
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 cat /etc/pacman.conf | grep Color
 echo "The above line should be 'Color'. If it is not, please come back to edit /etc/pacman.conf"
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 echo "################## Enabling systemctl ##################"
 systemctl enable sshd
@@ -230,8 +218,8 @@ echo "################## Editing mkinitcpio.conf ##################"
 sed -i 's/MODULES=.*/MODULES=(btrfs nvidia)/g' /etc/mkinitcpio.conf
 cat /etc/mkinitcpio.conf | grep MODULES
 echo "The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf"
-echo "Sleeping for 10 seconds while you read this."
-sleep 10
+echo "Sleeping for 20 seconds while you read this."
+sleep 20
 
 mkinitcpio -p linux
 
