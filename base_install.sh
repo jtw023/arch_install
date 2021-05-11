@@ -16,7 +16,7 @@ func_install() {
 
 echo "################## Running pacstrap command ##################"
 
-pacstrap /mnt base linux linux-firmware git vim intel-ucode btrfs-progs
+pacstrap /mnt base linux linux-firmware git
 
 echo "################## Generating FStab file ##################"
 
@@ -63,6 +63,7 @@ bat
 # bluez-libs
 # bluez-utils
 bridge-utils
+btrfs-progs
 ctags
 dialog
 opendoas
@@ -81,6 +82,7 @@ grub-btrfs
 gvfs-smb
 htop
 imagemagick
+intel-ucode
 jgmenu
 libreoffice-fresh
 libvirt
@@ -132,7 +134,7 @@ redshift
 reflector
 rofi
 rsync
-# rtorrent
+rtorrent
 signal-desktop
 # simplescreenrecorder
 sxiv
@@ -141,6 +143,7 @@ tlp
 ufw
 unzip
 vde2
+vim
 virt-manager
 wget
 wireless_tools
@@ -239,6 +242,11 @@ passwd
 
 echo "Enter a username for the normal user."
 read user
+
+addgroup libvirtd
+addgroup wheel
+addgroup users
+
 useradd -m -g users -G wheel,libvirt $user
 
 echo "Add a password for $user."
