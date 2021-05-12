@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BLUE='\033[0;34m' # Blue color
+BLUE='\033[1;34m' # Blue color
 GREEN='\033[0;32m' # Green color
 NC='\033[0m' # No color
 
@@ -92,7 +92,7 @@ else
 	cp -v ~$USER/Random-Scripts/set_screens.sh /usr/local/bin/set_screens.sh
 
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
-sed -i 's/#display-setup-.*/display-setup-script=/usr/local/bin/set_screens.sh/g' /etc/lightdm/lightdm.conf
+sed -i 's;#display-setup-script=;display-setup-script=/usr/local/bin/set_screens.sh;g' /etc/lightdm/lightdm.conf
 cat /etc/lightdm/lightdm.conf | grep display-setup-script
 echo -e "${BLUE}The above line should be 'display-setup-script=/usr/local/bin/set_screens.sh'. If it is not, please come back to edit /etc/lightdm/lightdm.conf${NC}."
 echo "Sleeping for 20 seconds while you read this."
