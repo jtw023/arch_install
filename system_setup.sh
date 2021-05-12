@@ -68,8 +68,6 @@ else
 
     echo "################## Making directories and moving packages ##################"
 
-	mkdir -pv /home/jordan/session
-
     if [ -d "/usr/share/zsh/themes" ]; then
         cp -v ~$USER/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
     else

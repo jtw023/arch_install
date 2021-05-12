@@ -96,6 +96,7 @@ mtools
 netctl
 networkmanager
 nitrogen
+nodejs
 nss-mdns
 nvidia
 nvidia-dkms
