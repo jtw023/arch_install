@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m' # Red color
 BLUE='\033[0;34m' # Blue color
 GREEN='\033[0;32m' # Green color
 NC='\033[0m' # No color
@@ -8,7 +9,7 @@ func_install() {
 
 	if pacman -Qi $1 &> /dev/null; then
 
-  		echo "################## The package "$1" is already installed ##################"
+  		echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
 
 	else
 
