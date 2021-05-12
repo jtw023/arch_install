@@ -162,16 +162,16 @@ if [[ -f "/etc/hostname" ]]; then
     echo "archybangbang" >> /etc/hostname
 else
     touch /etc/hostname
-    hostnamect set-hostname archybangbang
+    hostnamectl set-hostname archybangbang
     echo "archybangbang" >> /etc/hostname
 fi
 
 echo "################## Setting up wifi ##################"
 if [[ -f "/etc/hosts" ]]; then
-    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
+    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" | tee -a /etc/hosts > /dev/null
 else
     touch /etc/hosts
-    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
+    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" | tee -a /etc/hosts > /dev/null
 fi
 
 cat /etc/hosts
@@ -252,9 +252,5 @@ echo "################## Making grub ##################"
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo "################## Exiting chroot environment and unmounting drives ##################"
+echo "Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run the system_setup script next."
 
-exit
-umount -R /mnt
-
-echo "Finished. Please reboot and then run the system_setup script."
