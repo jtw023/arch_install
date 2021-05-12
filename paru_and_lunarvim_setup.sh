@@ -13,7 +13,7 @@ func_install() {
 
 	else
 
-		paru -S --skipreview $1
+		paru -S --skipreview --useask $1
 
     fi
 
@@ -129,9 +129,9 @@ if [[ $UID -ne 0 ]]; then
 
     echo "################## re-editing doas config file ##################"
 
-	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman\npermit '$USER' cmd updatedb' > /etc/doas.conf"
+    doas echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb' > /etc/doas.conf
 	cat /etc/doas.conf
-	echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
+	echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit nopass <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
 	echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
 	sleep 30
 
