@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+BLUE='\033[0;34m' # Blue color
+GREEN='\033[0;32m' # Green color
+NC='\033[0m' # No color
+
 if [[ $UID -ne 0 ]]; then
 
 	echo "Please switch to the root user first."
@@ -90,7 +94,7 @@ else
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
 sed -i 's/#display-setup-.*/display-setup-script=/usr/local/bin/set_screens.sh/g' /etc/lightdm/lightdm.conf
 cat /etc/lightdm/lightdm.conf | grep display-setup-script
-echo "The above line should be 'display-setup-script=/usr/local/bin/set_screens.sh'. If it is not, please come back to edit /etc/lightdm/lightdm.conf"
+echo -e "${BLUE}The above line should be 'display-setup-script=/usr/local/bin/set_screens.sh'. If it is not, please come back to edit /etc/lightdm/lightdm.conf${NC}."
 echo "Sleeping for 20 seconds while you read this."
 sleep 20
 
@@ -99,6 +103,6 @@ sleep 20
 
     chown -Rv $USER:wheel ~$USER/
 
-    echo "################## Finished. Please check home folder permissions then run the yay_and_lunarvim_setup script. ##################"
+    echo -e "${GREEN} Finished. Please check home folder permissions then run the yay_and_lunarvim_setup script${NC}."
 
 fi
