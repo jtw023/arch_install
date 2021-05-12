@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+BLUE='\033[0;34m' # Blue color
+GREEN='\033[0;32m' # Green color
+NC='\033[0m' # No color
+
 func_install() {
 
 	if pacman -Qi $1 &> /dev/null; then
@@ -20,8 +24,8 @@ ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 hwclock --systohc
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 cat /etc/locale.gen | grep en_US
-echo "The second line: 'en_US.UTF-8 UTF-8' should be uncommented. If not, please fix /etc/locale.gen."
-echo "Sleeping for 20 seconds while you read this."
+echo -e "${BLUE}There should be an uncommented line: 'en_US.UTF-8 UTF-8'. If not, please fix /etc/locale.gen${NC}."
+echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
 locale-gen
@@ -152,7 +156,7 @@ count=0
 
 for name in "${list[@]}" ; do
 	count=$[count+1]
-	echo "Installing package number  "$count " " $name;
+	echo -e "${BLUE}Installing package number${NC}  "$count " " $name;
 	func_install $name
 done
 
@@ -175,33 +179,33 @@ else
 fi
 
 cat /etc/hosts
-echo -e "The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts"
-echo "Sleeping for 30 seconds while you read this."
+echo -e "${BLUE}The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts${NC}."
+echo -e "${BLUE}Sleeping for 30 seconds while you read this${NC}."
 sleep 30
 
 echo "################## Editing /etc/libvirt/libvirtd.conf ##################"
 sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/g' /etc/libvirt/libvirtd.conf
 sed -i 's/#unix_sock_rw_perms = "0770"/unix_sock_rw_perms = "0770"/g' /etc/libvirt/libvirtd.conf
 cat /etc/libvirt/libvirtd.conf | grep unix_sock_group
-echo "The above line should be: unix_sock_group = 'libvirt'"
+echo -e "${BLUE}The above line should be: unix_sock_group = 'libvirt'${NC}"
 cat /etc/libvirt/libvirtd.conf | grep unix_sock_rw_perms
-echo "The above line should be: unix_sock_rw_perms = '0770'"
-echo "If either of those are wrong, please come back to edit /etc/libvirt/libvirtd.conf"
-echo "Sleeping for 20 seconds while you read this."
+echo -e "${BLUE}The above line should be: unix_sock_rw_perms = '0770'${NC}"
+echo -e "${BLUE}If either of those are wrong, please come back to edit /etc/libvirt/libvirtd.conf${NC}."
+echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
 echo "################## Editing /etc/lightdm/lightdm.conf ##################"
 sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
 cat /etc/lightdm/lightdm.conf | grep greeter-session=
-echo "The above line should be 'greeter-session=lightdm-webkit2-greeter'. If it is not, please come back to edit /etc/lightdm/lightdm.conf"
-echo "Sleeping for 20 seconds while you read this."
+echo -e "${BLUE}The above line should be 'greeter-session=lightdm-webkit2-greeter'. If it is not, please come back to edit /etc/lightdm/lightdm.conf${NC}."
+echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
 echo "################## Editing /etc/pacman.conf ##################"
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 cat /etc/pacman.conf | grep Color
-echo "The above line should be 'Color'. If it is not, please come back to edit /etc/pacman.conf"
-echo "Sleeping for 20 seconds while you read this."
+echo -e "${BLUE}The above line should be 'Color'. If it is not, please come back to edit /etc/pacman.conf${NC}."
+echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
 echo "################## Enabling systemctl ##################"
@@ -217,18 +221,19 @@ echo "################## Editing mkinitcpio.conf ##################"
 
 sed -i 's/MODULES=.*/MODULES=(btrfs nvidia)/g' /etc/mkinitcpio.conf
 cat /etc/mkinitcpio.conf | grep MODULES
-echo "The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf"
-echo "Sleeping for 20 seconds while you read this."
+echo -e "${BLUE}The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf${NC}."
+echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
 mkinitcpio -p linux
 
 echo "################## Setting users and passwords ##################"
 
-echo "Create a password for the root user."
+echo -e "${BLUE}Create a password for the root user${NC}."
 passwd
 
-echo "Enter a username for the normal user."
+echo -e "${BLUE}Enter a username for the normal user${NC}."
+echo "Password:"
 read user
 
 addgroup libvirtd
@@ -244,13 +249,9 @@ echo "################## Installing grub ##################"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
-# echo "################## Copying grub locale ##################"
-
-# cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-
 echo "################## Making grub ##################"
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo "Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run the system_setup script next."
+echo -e "${GREEN}Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run the system_setup script next${NC}."
 
