@@ -6,7 +6,7 @@ NC='\033[0m' # No color
 
 if [[ $UID -ne 0 ]]; then
 
-	echo "Please switch to the root user first."
+	echo -e "${RED}Please switch to the root user first${NC}."
 
 else
 

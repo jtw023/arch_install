@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m' # Red color
+BLUE='\033[1;34m' # Blue color
+GREEN='\033[0;32m' # Green color
+NC='\033[0m' # No color
+
 func_install() {
 
 	if pacman -Qi $1 &> /dev/null; then
 
-		echo "################## The package "$1" is already installed ##################"
+		echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
 
 	else
 
-		yay -S --noremovemake $1
+		paru -S --noremovemake $1
 
 }
 
@@ -19,8 +24,8 @@ if [[ $UID -ne 0 ]]; then
 	su -c "touch /etc/doas.conf"
 	su -c "echo 'permit '$USER' as root' > /etc/doas.conf"
 	cat /etc/doas.conf
-	echo "If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf"
-	echo "Sleeping for 10 seconds while you read this."
+	echo -e "${BLUE}If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
+	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
 	sleep 10
 
 	echo "################## Installing psutil ##################"
@@ -133,14 +138,14 @@ if [[ $UID -ne 0 ]]; then
 
 	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman' > /etc/doas.conf"
 	cat /etc/doas.conf
-	echo "If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf"
-	echo "Sleeping for 20 seconds while you read this."
-	sleep 20
+	echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
+	echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
+	sleep 30
 
-    echo "Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerCompile', ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman -Syu', and 'pacman -Rns' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'"
+    echo -e "${GREEN}Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the wifi that gets logged into on boot, the redshift amount, and the xrandr command that runs by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerCompile', ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman -Syu', and 'pacman -Rns' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
 
 else
 
-    echo "This script cannot be run as the root user."
+    echo -e "${RED}This script cannot be run as the root user${NC}."
     
 fi
