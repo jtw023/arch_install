@@ -15,6 +15,8 @@ func_install() {
 
 		paru -S --noremovemake $1
 
+    fi
+
 }
 
 if [[ $UID -ne 0 ]]; then
