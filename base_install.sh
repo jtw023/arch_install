@@ -99,7 +99,7 @@ nitrogen
 nss-mdns
 nvidia
 nvidia-dkms
-nvidia-lts
+# nvidia-lts
 nvidia-settings
 nvidia-utils
 openbsd-netcat
