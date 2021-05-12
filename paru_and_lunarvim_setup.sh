@@ -21,23 +21,6 @@ func_install() {
 
 if [[ $UID -ne 0 ]]; then
 
-	echo "################## Editing doas config file ##################"
-
-	su -c "touch /etc/doas.conf"
-	su -c "echo 'permit nopass '$USER' as root' > /etc/doas.conf"
-	cat /etc/doas.conf
-	echo -e "${BLUE}If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
-	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
-	sleep 10
-
-	echo "################## Editing sudoers config file ##################"
-
-    doas sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
-    doas cat /etc/sudoers | grep %wheel
-    echo -e "${BLUE}The above line should be '%wheel ALL=(ALL) ALL'. If it is not, please fix${NC}."
-    echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
-    sleep 20
-
 	echo "################## Installing psutil ##################"
 
     pip3 install psutil
