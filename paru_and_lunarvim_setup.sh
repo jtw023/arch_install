@@ -30,6 +30,14 @@ if [[ $UID -ne 0 ]]; then
 	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
 	sleep 10
 
+	echo "################## Editing sudoers config file ##################"
+
+    sed -i 's/#%wheel.*/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+    cat /etc/sudoers | grep %wheel
+    echo -e "${BLUE}The above line should be '%wheel ALL=(ALL:ALL) ALL'. If it is not, please fix${NC}."
+    echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
+    sleep 20
+
 	echo "################## Installing psutil ##################"
 
     pip3 install psutil
@@ -138,7 +146,7 @@ if [[ $UID -ne 0 ]]; then
 
     echo "################## re-editing doas config file ##################"
 
-	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman' > /etc/doas.conf"
+	su -c "echo 'permit '$USER' cmd nvim\npermit persist '$USER' cmd pacman\npermit '$USER' cmd updatedb' > /etc/doas.conf"
 	cat /etc/doas.conf
 	echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
 	echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
