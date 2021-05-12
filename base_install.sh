@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 RED='\033[0;31m' # Red color
-BLUE='\033[1;34m' # Blue color
+BLUE='\033[0;36m' # Cyan color
 GREEN='\033[0;32m' # Green color
 NC='\033[0m' # No color
 
