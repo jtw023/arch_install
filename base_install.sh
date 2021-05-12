@@ -168,14 +168,14 @@ fi
 
 echo "################## Setting up wifi ##################"
 if [[ -f "/etc/hosts" ]]; then
-    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" | tee -a /etc/hosts > /dev/null
+    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
 else
     touch /etc/hosts
-    echo "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" | tee -a /etc/hosts > /dev/null
+    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
 fi
 
 cat /etc/hosts
-echo "The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts"
+echo -e "The above file should contain the following:\n\n# Static table lookup for hostnames.\n# See hosts(5) for details.\n127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters\n\nIf not, please come back to edit /etc/hosts"
 echo "Sleeping for 30 seconds while you read this."
 sleep 30
 
