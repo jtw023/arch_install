@@ -242,11 +242,11 @@ passwd $user
 
 echo "################## Installing grub ##################"
 
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 
-echo "################## Copying grub locale ##################"
+# echo "################## Copying grub locale ##################"
 
-cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+# cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 
 echo "################## Making grub ##################"
 
