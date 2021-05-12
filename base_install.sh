@@ -234,7 +234,7 @@ echo -e "${BLUE}Create a password for the root user${NC}."
 passwd
 
 echo -e "${BLUE}Enter a username for the normal user${NC}."
-echo "Password:"
+echo "Username:"
 read user
 
 addgroup libvirtd
