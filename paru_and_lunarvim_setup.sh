@@ -33,7 +33,7 @@ if [[ $UID -ne 0 ]]; then
 	echo "################## Editing sudoers config file ##################"
 
     doas sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
-    cat /etc/sudoers | grep %wheel
+    doas cat /etc/sudoers | grep %wheel
     echo -e "${BLUE}The above line should be '%wheel ALL=(ALL) ALL'. If it is not, please fix${NC}."
     echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
     sleep 20
