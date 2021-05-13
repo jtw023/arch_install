@@ -6,7 +6,7 @@ NC='\033[0m' # No color
 
 if [[ $UID -ne 0 ]]; then
 
-	echo -e "${RED}Please use sudo to run this script${NC}."
+	echo -e "${RED}Please switch users with su to run this script as root${NC}."
 
 else
 
@@ -110,6 +110,6 @@ else
 
     chown -Rv $USER:wheel /home/$USER/
 
-    echo -e "${GREEN} Finished. Please check home folder permissions then run the yay_and_lunarvim_setup script${NC}."
+    echo -e "${GREEN} Finished. Please check home folder permissions then run the paru_and_lunarvim_setup script${NC}."
 
 fi
