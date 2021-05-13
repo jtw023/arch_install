@@ -15,4 +15,9 @@ After formatting your drive run the command:
 pacstrap /mnt base linux linux-firmware intel-ucode btrfs-progs git vim
 ~~~
 
+And then:
+~~~
+./arch_install/base_install.sh
+~~~
+
 When each script finishes it will tell you what to do and which script to run next.  
