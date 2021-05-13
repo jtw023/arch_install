@@ -255,5 +255,9 @@ echo "################## Making grub ##################"
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
+echo "################## Moving install script to users home directory ##################"
+
+mv -v install_script/ /home/jordan/
+
 echo -e "${GREEN}Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run the system_setup script next${NC}."
 
