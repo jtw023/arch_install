@@ -6,7 +6,7 @@ NC='\033[0m' # No color
 
 if [[ $UID -ne 0 ]]; then
 
-	echo -e "${RED}Please switch to the root user first${NC}."
+	echo -e "${RED}Please use sudo to run this script${NC}."
 
 else
 
@@ -18,15 +18,6 @@ else
 	echo -e "${BLUE}If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
 	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
 	sleep 10
-
-	echo "################## Editing sudoers config file ##################"
-
-    sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
-    cat /etc/sudoers | grep %wheel
-    echo -e "${BLUE}The above line should be '%wheel ALL=(ALL) ALL'. If it is not, please fix${NC}."
-    echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
-    sleep 20
-
 
     echo "################## Syncing Timezones ##################"
 
