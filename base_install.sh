@@ -158,7 +158,7 @@ count=0
 
 for name in "${list[@]}" ; do
 	count=$[count+1]
-	echo -e "${BLUE}Installing package number  "$count " of ${#list[@]}${NC}" $name;
+	echo -e "${BLUE}Installing package number "$count" of ${#list[@]}${NC}" $name;
 	func_install $name
 done
 
