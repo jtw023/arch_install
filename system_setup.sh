@@ -13,7 +13,7 @@ else
     echo "################## Editing doas config file ##################"
 
 	touch /etc/doas.conf
-	echo 'permit nopass '$USER' as root' > /etc/doas.conf
+	echo 'permit nopass '$user' as root' > /etc/doas.conf
 	cat /etc/doas.conf
 	echo -e "${BLUE}If the above line is not 'permit <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
 	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
@@ -52,7 +52,7 @@ else
     echo "| cd to the users home directory |"
     echo " -------------------------------- "
 
-    cd /home/$USER
+    cd /home/$user
 
     echo " --------------------------- "
     echo "| Installing zsh extensions |"
@@ -64,39 +64,39 @@ else
     mkdir -pv /usr/share/zsh/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/plugins/zsh-autosuggestions/
 
-    git clone --depth 1 https://github.com/junegunn/fzf.git /home/$USER/.fzf
-    /home/$USER/.fzf/install --all
+    git clone --depth 1 https://github.com/junegunn/fzf.git /home/$user/.fzf
+    /home/$user/.fzf/install --all
 
     echo " ------------------------------------- "
     echo "| Installing Random-Scripts directory |"
     echo " ------------------------------------- "
 
     git clone https://github.com/jtw023/Random-Scripts.git
-    chmod -v +x /home/$USER/Random-Scripts/*
+    chmod -v +x /home/$user/Random-Scripts/*
 
 
     echo "################## Making directories and moving packages ##################"
 
     if [ -d "/usr/share/zsh/themes" ]; then
-        cp -v /home/$USER/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
+        cp -v /home/$user/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
     else
         mkdir -pv /usr/share/zsh/themes
-        cp -v /home/$USER/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
+        cp -v /home/$user/.config/zsh/bira.zsh-theme /usr/share/zsh/themes/
     fi
 
     if [ -d "/usr/share/rofi/themes" ]; then
-        cp -v /home/$USER/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
+        cp -v /home/$user/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
     else
         mkdir -pv /usr/share/rofi/themes
-        cp -v /home/$USER/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
+        cp -v /home/$user/.config/rofi/arthur.rasi /usr/share/rofi/themes/arthur.rasi
     fi
 
-    cp -v /home/$USER/.config/Xresources/.Xresources /home/$USER/.Xresources
-    cp -v /home/$USER/.config/xinit/.xinitrc /home/$USER/.xinitrc
-    cp -v /home/$USER/.config/Xauthority/.Xauthority /home/$USER/.Xauthority
-    cp -v /home/$USER/.config/zsh/.zshrc.root /root/.zshrc
-    cp -v /home/$USER/.config/zsh/.zshenv /home/$USER/.zshenv
-	cp -v /home/$USER/Random-Scripts/set_screens.sh /usr/local/bin/set_screens.sh
+    cp -v /home/$user/.config/Xresources/.Xresources /home/$user/.Xresources
+    cp -v /home/$user/.config/xinit/.xinitrc /home/$user/.xinitrc
+    cp -v /home/$user/.config/Xauthority/.Xauthority /home/$user/.Xauthority
+    cp -v /home/$user/.config/zsh/.zshrc.root /root/.zshrc
+    cp -v /home/$user/.config/zsh/.zshenv /home/$user/.zshenv
+	cp -v /home/$user/Random-Scripts/set_screens.sh /usr/local/bin/set_screens.sh
 
     echo "################## Editing /etc/lightdm/lightdm.conf ##################"
     sed -i 's;#display-setup-script=;display-setup-script=/usr/local/bin/set_screens.sh;g' /etc/lightdm/lightdm.conf
@@ -108,7 +108,7 @@ else
 
     echo "################## Changing ownership of the entire home directory ##################"
 
-    chown -Rv $USER:wheel /home/$USER/
+    chown -Rv $user:wheel /home/$user/
 
     echo -e "${GREEN} Finished. Please check home folder permissions then run the yay_and_lunarvim_setup script${NC}."
 

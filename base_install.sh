@@ -247,6 +247,8 @@ useradd -m -g users -G wheel,libvirt $user
 echo "Add a password for $user."
 passwd $user
 
+export $user
+
 echo "################## Installing grub ##################"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
