@@ -79,8 +79,6 @@ imagemagick
 jgmenu
 libreoffice-fresh
 libvirt
-lightdm
-lightdm-webkit2-greeter
 # linux-lts-headers
 linux-headers
 lolcat
@@ -143,6 +141,7 @@ wget
 wireless_tools
 wpa_supplicant
 xorg-server
+xorg-xinit
 xorg-xkill
 xorg-xrandr
 xorg-xrdb
@@ -196,13 +195,6 @@ echo -e "${BLUE}If either of those are wrong, please come back to edit /etc/libv
 echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
-echo "################## Editing /etc/lightdm/lightdm.conf ##################"
-sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
-cat /etc/lightdm/lightdm.conf | grep greeter-session=
-echo -e "${BLUE}The above line should be 'greeter-session=lightdm-webkit2-greeter'. If it is not, please come back to edit /etc/lightdm/lightdm.conf${NC}."
-echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
-sleep 20
-
 echo "################## Editing /etc/pacman.conf ##################"
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 cat /etc/pacman.conf | grep Color
@@ -213,7 +205,6 @@ sleep 20
 echo "################## Enabling systemctl ##################"
 systemctl enable sshd
 systemctl enable NetworkManager
-systemctl enable lightdm
 systemctl enable tlp
 systemctl enable libvirtd
 # systemctl enable bluetooth
@@ -265,11 +256,11 @@ sleep 20
 
 echo "################## Moving install script to users home directory ##################"
 
-mv -v install_script/ /home/jordan/
+mv -v install_script/ /home/$user/
 
 echo "################## Inserting echo command into bashrc for next steps ##################"
 
-echo "echo 'command for next script: ./install_script/system_setup.sh'" >> /home/jordan/.bashrc
+echo "echo 'command for next script(to be run with su NOT sudo): ./install_script/system_setup.sh'" >> /home/$user/.bashrc
 
-echo -e "${GREEN}Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run 'sudo -E ./install_script/system_setup.sh' next${NC}."
+echo -e "${GREEN}Finished! Please type 'exit', then 'umount -R /mnt', and reboot${NC}."
 
