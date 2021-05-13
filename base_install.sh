@@ -158,7 +158,7 @@ count=0
 
 for name in "${list[@]}" ; do
 	count=$[count+1]
-	echo -e "${BLUE}Installing package number${NC}  "$count " " $name;
+	echo -e "${BLUE}Installing package number  "$count " of ${#list[@]}${NC}" $name;
 	func_install $name
 done
 
@@ -174,10 +174,10 @@ fi
 
 echo "################## Setting up wifi ##################"
 if [[ -f "/etc/hosts" ]]; then
-    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
+    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
 else
     touch /etc/hosts
-    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
+    echo -e "127.0.0.1 localhost\n::1 localhost ip6-localhost ip6-loopback\n127.0.1.1 archybangbang\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters" >> /etc/hosts
 fi
 
 cat /etc/hosts
@@ -238,9 +238,9 @@ echo -e "${BLUE}Enter a username for the normal user${NC}."
 echo "Username:"
 read user
 
-addgroup libvirtd
-addgroup wheel
-addgroup users
+groupadd libvirtd
+groupadd wheel
+groupadd users
 
 useradd -m -g users -G wheel,libvirt $user
 
