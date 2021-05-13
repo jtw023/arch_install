@@ -2,7 +2,7 @@ This is collection of install scripts. If you would like bluetooth functionality
 
 For this to work, the user must be running an nvidia graphics card. If not, Please comment out the nvidia packages and install with your appropriate graphics packages. I also have an intel processor. If you have an amd processor, please add 'amd-ucode' to the base_install script. These scripts are also assuming a btrfs file system. If that is not what you are looking for you can comment the btrfs-progs package and modify it as you please. As always, please verify what this is actually doing to your system before running it. 
 
-# Installtion:
+# Installation:
 ~~~
 git clone https://github.com/jtw023/arch_install.git
 ~~~
