@@ -267,5 +267,5 @@ echo "################## Moving install script to users home directory #########
 
 mv -v install_script/ /home/jordan/
 
-echo -e "${GREEN}Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run the system_setup script next${NC}."
+echo -e "${GREEN}Finished! Please type 'exit' and then 'umount -R /mnt' and reboot. Run 'sudo -E ./install_script/system_setup.sh' next${NC}."
 
