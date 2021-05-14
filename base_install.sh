@@ -208,9 +208,7 @@ echo "################## Enabling systemctl ##################"
 systemctl enable sshd
 systemctl enable NetworkManager
 systemctl enable tlp
-systemctl enable libvirtd
 # systemctl enable bluetooth
-virsh net-autostart default
 
 echo "################## Editing mkinitcpio.conf ##################"
 
