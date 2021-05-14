@@ -21,7 +21,7 @@ func_install() {
 
 if [[ $UID -ne 0 ]]; then
 
-	echo "################## Installing psutil ##################"
+    echo "################## Installing psutil ##################"
 
     pip3 install psutil
 
@@ -79,9 +79,14 @@ if [[ $UID -ne 0 ]]; then
 
     for name in "${list[@]}"; do
         count=$[count+1]
-        echo "Installing package number "$count " " $name;
+        echo -e "${BLUE}Installing package number "$count" of ${#list[@]}${NC}" $name;
         func_install $name
     done
+
+    echo "################### Enabling kvm ###################"
+
+    doas systemctl enable libvirtd
+    doas virsh net-autostart default
 
     echo "################### Updating pkgfile ###################"
     
@@ -111,10 +116,10 @@ if [[ $UID -ne 0 ]]; then
     echo "################## re-editing doas config file ##################"
 
     su -c "echo -e 'permit '$USER' cmd nvim\npermit '$USER' cmd rsync\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb' > /etc/doas.conf"
-	cat /etc/doas.conf
-	echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit nopass <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
-	echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
-	sleep 30
+    cat /etc/doas.conf
+    echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit nopass <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
+    echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
+    sleep 30
 
 
     echo "################### Removing Regular Vim and Sudo ###################"
