@@ -258,11 +258,11 @@ sleep 20
 
 echo "################## Moving install script to users home directory ##################"
 
-mv -v install_script/ /home/$user/
+mv -v arch_install/ /home/$user/
 
 echo "################## Inserting echo command into bashrc for next steps ##################"
 
-echo "echo 'command for next script(to be run with su NOT sudo): ./install_script/system_setup.sh'" >> /home/$user/.bashrc
+echo "echo 'command for next script(to be run with su NOT sudo): ./arch_install/system_setup.sh'" >> /home/$user/.bashrc
 
 echo -e "${GREEN}Finished! Please type 'exit', then 'umount -R /mnt', and reboot${NC}."
 
