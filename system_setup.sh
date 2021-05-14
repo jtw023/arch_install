@@ -102,6 +102,6 @@ else
 
     chown -Rv $USER:wheel /home/$USER/
 
-    echo -e "${GREEN} Finished. Please check home folder permissions then run the paru_and_lunarvim_setup script${NC}."
+    echo -e "${GREEN} Finished. Please exit back to the normal user and run ./arch_install/paru_and_lunarvim_setup${NC}."
 
 fi
