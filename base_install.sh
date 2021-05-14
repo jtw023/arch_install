@@ -70,6 +70,7 @@ efibootmgr
 efm-langserver
 ffmpeg
 flameshot
+go
 grub
 grub-btrfs
 gvfs-smb
@@ -95,6 +96,7 @@ netctl
 networkmanager
 nitrogen
 nodejs
+npm
 nss-mdns
 nvidia
 nvidia-dkms
