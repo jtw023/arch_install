@@ -52,7 +52,7 @@ if [[ $UID -ne 0 ]]; then
     echo "| Makepkg |"
     echo " --------- "
 
-    makepkg -si
+    makepkg -si --noconfirm
 
     echo " ---------------------------- "
     echo "| cd to users home directory |"
@@ -95,13 +95,13 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Installing LunarVim Plugins ###################"
 
     git clone https://github.com/vimwiki/vimwiki.git
-    doas mv -rv vimwiki/ $HOME/.local/share/nvim/site/pack/packer/start/
+    doas mv -v vimwiki/ $HOME/.local/share/nvim/site/pack/packer/start/
     
     git clone https://github.com/preservim/tagbar.git
-    doas mv -rv tagbar/ $HOME/.local/share/nvim/site/pack/packer/start/
+    doas mv -v tagbar/ $HOME/.local/share/nvim/site/pack/packer/start/
 
     git clone https://github.com/norcalli/nvim-colorizer.lua.git
-    doas mv -rv nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
+    doas mv -v nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
 
     echo "################### Removing .config directory and installing a custom one ###################"
 
@@ -117,18 +117,14 @@ if [[ $UID -ne 0 ]]; then
 	sleep 30
 
 
-    echo "################### Removing Regular Vim ###################"
+    echo "################### Removing Regular Vim and Sudo ###################"
 
-    doas pacman -Rnsv vim
-
-    echo "################### Removing Sudo ###################"
-
-    doas pacman -Rnsv sudo
+    doas pacman -Rnsv --noconfirm vim sudo
 
     echo "################### Changing primary shell from bash to zsh ###################"
 
     chsh -s /bin/zsh
-    doas chsh -s /bin/zsh root
+    su -c "chsh -s /bin/zsh root"
 
     echo "################### Setting neovim to git difftool ###################"
 
@@ -137,7 +133,7 @@ if [[ $UID -ne 0 ]]; then
     git config --global difftool.nvimdiff.cmd "nvim -d \"$LOCAL\" \"$REMOTE\""
 
    
-    echo -e ${GREEN}"Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman -Syu', and 'pacman -Rns' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
+    echo -e ${GREEN}"Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman', and 'updatedb' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
 
 else
 
