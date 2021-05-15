@@ -59,7 +59,6 @@ bridge-utils
 btrfs-progs
 ctags
 dialog
-opendoas
 dnsmasq
 dosfstools
 dunst
@@ -104,6 +103,7 @@ nvidia-dkms
 nvidia-settings
 nvidia-utils
 openbsd-netcat
+opendoas
 openssh
 os-prober
 pacman-contrib
@@ -148,7 +148,7 @@ xorg-xkill
 xorg-xrandr
 xorg-xrdb
 xorg-xprop
-# youtube-dl
+youtube-dl
 zathura
 zathura-pdf-mupdf
 zsh
