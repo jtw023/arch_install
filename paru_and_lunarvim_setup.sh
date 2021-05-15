@@ -86,6 +86,7 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Enabling kvm ###################"
 
     doas systemctl enable libvirtd
+    doas systemctl start libvirtd
     doas virsh net-autostart default
 
     echo "################### Updating pkgfile ###################"
