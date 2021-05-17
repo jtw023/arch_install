@@ -54,6 +54,12 @@ else
 
     cd /home/$USER
 
+    echo " ------------------------------- "
+    echo "| Pulling down librewolf config |"
+    echo " ------------------------------- "
+
+    git clone https://github.com/jtw023/.librewolf.git
+
     echo " --------------------------- "
     echo "| Installing zsh extensions |"
     echo " --------------------------- "
