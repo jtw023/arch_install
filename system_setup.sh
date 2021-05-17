@@ -92,11 +92,9 @@ else
     fi
 
     cp -v /home/$USER/.config/Xresources/.Xresources /home/$USER/.Xresources
-    cp -v /home/$USER/.config/xinit/.xinitrc /home/$USER/.xinitrc
     cp -v /home/$USER/.config/Xauthority/.Xauthority /home/$USER/.Xauthority
     cp -v /home/$USER/.config/zsh/.zshrc.root /root/.zshrc
     cp -v /home/$USER/.config/zsh/.zshenv /home/$USER/.zshenv
-	cp -v /home/$USER/Random-Scripts/set_screens.sh /usr/local/bin/set_screens.sh
 
     echo "################## Changing ownership of the entire home directory ##################"
 
