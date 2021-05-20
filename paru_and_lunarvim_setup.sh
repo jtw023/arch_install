@@ -109,16 +109,20 @@ if [[ $UID -ne 0 ]]; then
     git clone https://github.com/norcalli/nvim-colorizer.lua.git
     doas mv -v nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
 
-    echo "################### Removing .config directory and installing a custom one ###################"
+    echo "################### Installing custom .config directory ###################"
 
     rm -rf $HOME/.config/
     git clone https://github.com/jtw023/.config.git
    
+    echo "################### Enabling timeshift ###################"
+
+    doas timeshift-gtk
+
     echo "################## re-editing doas config file ##################"
 
-    su -c "echo -e 'permit '$USER' cmd nvim\npermit '$USER' cmd rsync\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb' > /etc/doas.conf"
+    su -c "echo -e 'permit '$USER' cmd nvim\npermit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount\npermit nopass '$USER' cmd timeshift args --create' > /etc/doas.conf"
     cat /etc/doas.conf
-    echo -e "${BLUE}If the above three lines are not 'permit <yourusername> cmd nvim', 'permit persist <yourusername> cmd pacman', and 'permit nopass <yourusername> cmd updatedb' then please come back to modify /etc/doas.conf${NC}."
+    echo -e "${BLUE}If the above lines do not match then please come back to modify /etc/doas.conf.\n\npermit <yourusername> cmd nvim\npermit <yourusername> cmd rsync\npermit <yourusername> cmd make\npermit <yourusername> cmd mount\npermit persist <yourusername> cmd pacman\npermit nopass <yourusername> cmd updatedb\npermit nopass <yourusername> cmd umount\npermit nopass <yourusername> cmd timeshift args --create${NC}"
     echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
     sleep 30
 
@@ -136,7 +140,7 @@ if [[ $UID -ne 0 ]]; then
 
     git config --global difftool.prompt true
     git config --global diff.tool nvimdiff
-    git config --global difftool.nvimdiff.cmd "nvim -d \"$LOCAL\" \"$REMOTE\""
+    git config --global difftool.nvimdiff.cmd "\"nvim -d \"$LOCAL\" \"$REMOTE\"\""
 
    
     echo -e ${GREEN}"Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman', and 'updatedb' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
