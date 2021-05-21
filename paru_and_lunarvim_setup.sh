@@ -120,7 +120,7 @@ if [[ $UID -ne 0 ]]; then
 
     echo "################## re-editing doas config file ##################"
 
-    su -c "echo -e 'permit '$USER' cmd nvim\npermit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount\npermit nopass '$USER' cmd timeshift args --create' > /etc/doas.conf"
+    su -c "echo -e 'permit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount\npermit nopass '$USER' cmd timeshift args --create' > /etc/doas.conf"
     cat /etc/doas.conf
     echo -e "${BLUE}If the above lines do not match then please come back to modify /etc/doas.conf.\n\npermit <yourusername> cmd nvim\npermit <yourusername> cmd rsync\npermit <yourusername> cmd make\npermit <yourusername> cmd mount\npermit persist <yourusername> cmd pacman\npermit nopass <yourusername> cmd updatedb\npermit nopass <yourusername> cmd umount\npermit nopass <yourusername> cmd timeshift args --create${NC}"
     echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
