@@ -63,7 +63,7 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Installing paru packages ###################"
 
     list=(
-    # brave-bin
+    brave-bin
     devour
     librewolf-bin
     lua-format
