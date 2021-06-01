@@ -92,7 +92,7 @@ if [[ $UID -ne 0 ]]; then
     
     doas pkgfile -u
 
-    echo "################### Downloading and Making LunarVim ###################"
+    echo "################### Downloading and Making Neovim ###################"
 
     git clone https://github.com/neovim/neovim --depth 1
     cd neovim
