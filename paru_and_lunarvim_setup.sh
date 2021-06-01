@@ -67,7 +67,6 @@ if [[ $UID -ne 0 ]]; then
     devour
     librewolf-bin
     lua-format
-    neovim-git
     pkgfile-git
     pulseaudio-ctl
     slack-desktop
@@ -92,6 +91,14 @@ if [[ $UID -ne 0 ]]; then
     echo "################### Updating pkgfile ###################"
     
     doas pkgfile -u
+
+    echo "################### Downloading and Making LunarVim ###################"
+
+    git clone https://github.com/neovim/neovim --depth 1
+    cd neovim
+    doas make CMAKE_BUILD_TYPE=Release install
+    cd ..
+    rm -rf neovim
 
     echo "################### Installing LunarVim ###################"
 
