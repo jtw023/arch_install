@@ -121,10 +121,6 @@ if [[ $UID -ne 0 ]]; then
     rm -rf $HOME/.config/
     git clone https://github.com/jtw023/.config.git
    
-    echo "################### Enabling timeshift ###################"
-
-    doas timeshift-gtk
-
     echo "################## re-editing doas config file ##################"
 
     su -c "echo -e 'permit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount' > /etc/doas.conf"
