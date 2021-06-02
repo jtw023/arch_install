@@ -7,13 +7,13 @@ NC='\033[0m' # No color
 
 func_install() {
 
-	if pacman -Qi $1 &> /dev/null; then
+    if pacman -Qi $1 &> /dev/null; then
 
-  		echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
+        echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
 
-	else
+    else
 
-    	pacman -S --noconfirm $1
+        pacman -S --noconfirm $1
 
     fi
 
@@ -158,9 +158,9 @@ zsh-syntax-highlighting
 count=0
 
 for name in "${list[@]}" ; do
-	count=$[count+1]
-	echo -e "${BLUE}Installing package number "$count" of ${#list[@]}${NC}" $name;
-	func_install $name
+    count=$[count+1]
+    echo -e "${BLUE}Installing package number "$count" of ${#list[@]}${NC}" $name;
+    func_install $name
 done
 
 echo "################## Setting hostname to 'archybangbang' ##################"

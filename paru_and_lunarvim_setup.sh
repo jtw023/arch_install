@@ -7,13 +7,13 @@ NC='\033[0m' # No color
 
 func_install() {
 
-	if pacman -Qi $1 &> /dev/null; then
+    if pacman -Qi $1 &> /dev/null; then
 
-		echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
+        echo -e "${RED}################## The package "$1" is already installed ##################${NC}"
 
-	else
+    else
 
-		paru -S --skipreview --noconfirm $1
+        paru -S --skipreview --noconfirm $1
 
     fi
 
@@ -40,7 +40,7 @@ if [[ $UID -ne 0 ]]; then
     echo "| Changing ownership of paru directory |"
     echo " ------------------------------------- "
 
-	doas chown -Rv $USER:users ./paru
+    doas chown -Rv $USER:users ./paru
 
     echo " ----------------- "
     echo "| cd to /opt/paru/ |"
@@ -89,7 +89,7 @@ if [[ $UID -ne 0 ]]; then
     doas virsh net-autostart default
 
     echo "################### Updating pkgfile ###################"
-    
+
     doas pkgfile -u
 
     echo "################### Downloading and Making Neovim ###################"
@@ -104,23 +104,23 @@ if [[ $UID -ne 0 ]]; then
 
     rm -rf $HOME/.config/
     bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
-    
+
     echo "################### Installing LunarVim Plugins ###################"
 
     git clone https://github.com/vimwiki/vimwiki.git
-    doas mv -v vimwiki/ $HOME/.local/share/nvim/site/pack/packer/start/
-    
+    mv -v vimwiki/ $HOME/.local/share/nvim/site/pack/packer/start/
+
     git clone https://github.com/preservim/tagbar.git
-    doas mv -v tagbar/ $HOME/.local/share/nvim/site/pack/packer/start/
+    mv -v tagbar/ $HOME/.local/share/nvim/site/pack/packer/start/
 
     git clone https://github.com/norcalli/nvim-colorizer.lua.git
-    doas mv -v nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
+    mv -v nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
 
     echo "################### Installing custom .config directory ###################"
 
     rm -rf $HOME/.config/
     git clone https://github.com/jtw023/.config.git
-   
+
     echo "################## re-editing doas config file ##################"
 
     su -c "echo -e 'permit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount' > /etc/doas.conf"
@@ -145,11 +145,11 @@ if [[ $UID -ne 0 ]]; then
     git config --global diff.tool nvimdiff
     git config --global difftool.nvimdiff.cmd "\"nvim -d \"$LOCAL\" \"$REMOTE\"\""
 
-   
+
     echo -e ${GREEN}"Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman', and 'updatedb' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
 
 else
 
     echo -e "${RED}This script cannot be run as the root user${NC}."
-    
+
 fi

@@ -6,18 +6,18 @@ NC='\033[0m' # No color
 
 if [[ $UID -ne 0 ]]; then
 
-	echo -e "${RED}Please switch users with su to run this script as root${NC}."
+    echo -e "${RED}Please switch users with su to run this script as root${NC}."
 
 else
 
     echo "################## Editing doas config file ##################"
 
-	touch /etc/doas.conf
-	echo 'permit nopass '$USER' as root' > /etc/doas.conf
-	cat /etc/doas.conf
-	echo -e "${BLUE}If the above line is not 'permit nopass <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
-	echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
-	sleep 10
+    touch /etc/doas.conf
+    echo 'permit nopass '$USER' as root' > /etc/doas.conf
+    cat /etc/doas.conf
+    echo -e "${BLUE}If the above line is not 'permit nopass <yourusername> as root' then please come back to modify /etc/doas.conf${NC}"
+    echo -e "${BLUE}Sleeping for 10 seconds while you read this${NC}."
+    sleep 10
 
     echo "################## Syncing Timezones ##################"
 
