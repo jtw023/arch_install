@@ -71,7 +71,7 @@ if [[ $UID -ne 0 ]]; then
     pulseaudio-ctl
     slack-desktop
     tutanota-desktop
-    timeshift
+    # timeshift
     )
 
     count=0
@@ -100,22 +100,6 @@ if [[ $UID -ne 0 ]]; then
     cd ..
     rm -rf neovim
 
-    echo "################### Installing LunarVim ###################"
-
-    rm -rf $HOME/.config/
-    bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/master/utils/installer/install.sh)
-
-    echo "################### Installing LunarVim Plugins ###################"
-
-    git clone https://github.com/vimwiki/vimwiki.git
-    mv -v vimwiki/ $HOME/.local/share/nvim/site/pack/packer/start/
-
-    git clone https://github.com/preservim/tagbar.git
-    mv -v tagbar/ $HOME/.local/share/nvim/site/pack/packer/start/
-
-    git clone https://github.com/norcalli/nvim-colorizer.lua.git
-    mv -v nvim-colorizer.lua/ $HOME/.local/share/nvim/site/pack/packer/start/
-
     echo "################### Installing custom .config directory ###################"
 
     rm -rf $HOME/.config/
@@ -125,7 +109,7 @@ if [[ $UID -ne 0 ]]; then
 
     su -c "echo -e 'permit '$USER' cmd rsync\npermit '$USER' cmd make\npermit '$USER' cmd mount\npermit persist '$USER' cmd pacman\npermit nopass '$USER' cmd updatedb\npermit nopass '$USER' cmd umount' > /etc/doas.conf"
     cat /etc/doas.conf
-    echo -e "${BLUE}If the above lines do not match then please come back to modify /etc/doas.conf.\n\npermit <yourusername> cmd nvim\npermit <yourusername> cmd rsync\npermit <yourusername> cmd make\npermit <yourusername> cmd mount\npermit persist <yourusername> cmd pacman\npermit nopass <yourusername> cmd updatedb\npermit nopass <yourusername> cmd umount${NC}"
+    echo -e "${BLUE}If the above lines do not match then please come back to modify /etc/doas.conf.\n\npermit <yourusername> cmd rsync\npermit <yourusername> cmd make\npermit <yourusername> cmd mount\npermit persist <yourusername> cmd pacman\npermit nopass <yourusername> cmd updatedb\npermit nopass <yourusername> cmd umount${NC}"
     echo "${BLUE}Sleeping for 30 seconds while you read this${NC}."
     sleep 30
 
@@ -146,7 +130,7 @@ if [[ $UID -ne 0 ]]; then
     git config --global difftool.nvimdiff.cmd "\"nvim -d \"$LOCAL\" \"$REMOTE\"\""
 
 
-    echo -e ${GREEN}"Finished. Be sure to sync any backed up files and make sure the correct version of lunarvim is installed.\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nPlease open nvim and run ':PackerInstall', ':LspInstall efm', and ':LspInstall python'\n\nRemember: you can only run 'nvim', 'pacman', and 'updatedb' as doas. Sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
+    echo -e ${GREEN}"Finished. Be sure to sync any backed up files.\n\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nLastly, please open nvim and run ':PlugInstall'\n\nRemember: doas will not allow most commands other than 'pacman' to be run as root. Also remember that sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
 
 else
 
