@@ -66,7 +66,7 @@ ebtables
 ecryptfs-utils
 edk2-ovmf
 efibootmgr
-efm-langserver
+# efm-langserver
 ffmpeg
 flameshot
 go
@@ -107,6 +107,7 @@ opendoas
 openssh
 os-prober
 pacman-contrib
+pandoc
 pass
 pavucontrol
 pcmanfm
