@@ -70,9 +70,6 @@ else
     mkdir -pv /usr/share/zsh/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/plugins/zsh-autosuggestions/
 
-    git clone --depth 1 https://github.com/junegunn/fzf.git /home/$USER/.fzf
-    /home/$USER/.fzf/install --all
-
     echo " ------------------------------------- "
     echo "| Installing Random-Scripts directory |"
     echo " ------------------------------------- "
