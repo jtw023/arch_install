@@ -130,6 +130,11 @@ if [[ $UID -ne 0 ]]; then
     git config --global difftool.nvimdiff.cmd "\"nvim -d \"$LOCAL\" \"$REMOTE\"\""
 
 
+    echo "################### Installing fuzzy finder ###################"
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git /home/$USER/.fzf
+    /home/$USER/.fzf/install --all
+
     echo -e ${GREEN}"Finished. Be sure to sync any backed up files.\n\nYou can also change the redshift amount and other things by editing "$HOME"/.config/qtile/scripts/autostart.sh\n\nLastly, please open nvim and run ':PlugInstall'\n\nRemember: doas will not allow most commands other than 'pacman' to be run as root. Also remember that sudo is aliased to doas in "$HOME"/.config/zsh/.zshrc. For all other commands please switch to the root user using 'su'${NC}."
 
 else
