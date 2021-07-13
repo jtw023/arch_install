@@ -215,9 +215,11 @@ systemctl enable tlp
 
 echo "################## Editing mkinitcpio.conf ##################"
 
-sed -i 's/MODULES=.*/MODULES=(btrfs nvidia)/g' /etc/mkinitcpio.conf
+# sed -i 's/MODULES=.*/MODULES=(btrfs nvidia)/g' /etc/mkinitcpio.conf
+sed -i 's/MODULES=.*/MODULES=(nvidia)/g' /etc/mkinitcpio.conf
 cat /etc/mkinitcpio.conf | grep MODULES
-echo -e "${BLUE}The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf${NC}."
+# echo -e "${BLUE}The above line should be 'MODULES=(btrfs nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf${NC}."
+echo -e "${BLUE}The above line should be 'MODULES=(nvidia)'. If it is not, please come back to edit /etc/mkinitcpio.conf${NC}."
 echo -e "${BLUE}Sleeping for 20 seconds while you read this${NC}."
 sleep 20
 
