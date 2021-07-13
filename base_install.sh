@@ -56,11 +56,12 @@ bat
 # bluez-libs
 # bluez-utils
 bridge-utils
-btrfs-progs
+# btrfs-progs
+cmake
 ctags
 dialog
 dnsmasq
-dosfstools
+# dosfstools
 dunst
 ebtables
 ecryptfs-utils
@@ -71,7 +72,7 @@ ffmpeg
 flameshot
 go
 grub
-grub-btrfs
+# grub-btrfs
 gvfs-smb
 htop
 imagemagick
@@ -105,13 +106,14 @@ nvidia-utils
 openbsd-netcat
 opendoas
 openssh
-os-prober
+# os-prober
 pacman-contrib
 pandoc
 pass
 pavucontrol
 pcmanfm
 picom
+pkgfile
 powerline-fonts
 pulseaudio
 pulseaudio-alsa
@@ -124,7 +126,7 @@ qemu
 qtile
 qutebrowser
 r
-ranger
+# ranger
 redshift
 reflector
 rofi
@@ -241,7 +243,7 @@ passwd $user
 
 echo "################## Installing grub ##################"
 
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 
 echo "################## Making grub ##################"
 
