@@ -12,7 +12,7 @@ Run the first script "base_install.sh" after the initial pacstrap command. For e
 After formatting your drive run the command:
 
 ~~~
-pacstrap /mnt base linux linux-firmware intel-ucode btrfs-progs git vim
+pacstrap /mnt base linux linux-firmware intel-ucode git vim
 ~~~
 
 And then:
