@@ -155,6 +155,7 @@ youtube-dl
 zathura
 zathura-pdf-mupdf
 zsh
+zsh-autosuggestions
 zsh-syntax-highlighting
 )
 
