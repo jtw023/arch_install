@@ -72,6 +72,7 @@ if [[ $UID -ne 0 ]]; then
     slack-desktop
     tutanota-desktop
     # timeshift
+    zsh-you-should-use
     )
 
     count=0
