@@ -68,6 +68,7 @@ ecryptfs-utils
 edk2-ovmf
 efibootmgr
 # efm-langserver
+fd
 ffmpeg
 flameshot
 go
@@ -114,6 +115,7 @@ pavucontrol
 pcmanfm
 picom
 pkgfile
+postgresql
 powerline-fonts
 pulseaudio
 pulseaudio-alsa
