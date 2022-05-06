@@ -43,7 +43,7 @@ echo "################## Installing Software ##################"
 
 list=(
 adapta-gtk-theme
-alacritty
+# alacritty
 alsa-lib
 # archlinux-wallpaper
 avahi
@@ -79,6 +79,7 @@ htop
 imagemagick
 # intel-ucode
 jgmenu
+kitty
 libreoffice-fresh
 libvirt
 # linux-lts-headers
